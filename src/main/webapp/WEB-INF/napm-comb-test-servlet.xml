@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:p="http://www.springframework.org/schema/p" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:cache="http://www.springframework.org/schema/cache"
+	xsi:schemaLocation="
+    http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context-4.0.xsd
+    http://www.springframework.org/schema/tx
+	http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+    http://www.springframework.org/schema/mvc
+    http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
+    http://www.springframework.org/schema/cache  
+    http://www.springframework.org/schema/cache/spring-cache-4.0.xsd">
+
+	<context:component-scan base-package="com.netease.napm.test" />
+
+	
+	<bean id="freemarkerConfig"
+		class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
+		<property name="templateLoaderPath" value="/template/" />
+		<property name="freemarkerSettings">
+			<props>
+				<prop key="template_update_delay">0</prop>
+				<prop key="default_encoding">utf-8</prop>
+				<prop key="locale">zh_CN</prop>
+				<prop key="number_format">0.##########</prop>
+			</props>
+		</property>
+	</bean>
+
+	<bean
+		class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
+		<property name="order" value="1" />
+		<property name="defaultContentType" value="application/json" />
+		<property name="mediaTypes">
+			<map>
+				<entry key="ftl" value="text/html" />
+				<entry key="xml" value="application/xml" />
+				<entry key="json" value="application/json" />
+			</map>
+		</property>
+		<property name="viewResolvers">
+			<list>
+				<bean id="viewResolver"
+					class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
+					<property name="prefix" value="" />
+					<property name="suffix" value=".ftl" />
+					<property name="order" value="2" />
+					<property name="contentType" value="text/html; charset=utf-8" />
+					<property name="exposeRequestAttributes" value="true" />
+					<property name="exposeSessionAttributes" value="true" />
+					<property name="exposeSpringMacroHelpers" value="true" />
+					<property name="cache" value="true" />
+				</bean>
+			</list>
+		</property>
+		<property name="defaultViews">
+			<list>
+				<bean
+					class="org.springframework.web.servlet.view.json.MappingJacksonJsonView" />
+
+				<bean class="org.springframework.web.servlet.view.xml.MarshallingView">
+					<property name="marshaller">
+						<bean class="org.springframework.oxm.xstream.XStreamMarshaller" />
+					</property>
+				</bean>
+			</list>
+		</property>
+	</bean>
+	<bean id="stringHttpMessageConverter"
+		class="org.springframework.http.converter.StringHttpMessageConverter" />
+
+</beans>
