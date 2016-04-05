@@ -11,6 +11,7 @@ public class HttpConfig {
     private String path;
     private int statusCode;
     private long delay;
+    private String method;
 
     public HttpConfig() {
         super();
@@ -45,6 +46,14 @@ public class HttpConfig {
 
     public void setDelay(long delay) {
         this.delay = delay;
+    }
+
+    public String getMethod() {
+        return method;
+    }
+
+    public void setMethod(String method) {
+        this.method = method;
     }
 
 }

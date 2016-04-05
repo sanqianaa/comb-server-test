@@ -4,8 +4,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.ui.ModelMap;
 
-import com.netease.napm.test.meta.HttpConfig;
-
 /**
  * @Description
  * @author hzdaiyuan
@@ -15,17 +13,15 @@ import com.netease.napm.test.meta.HttpConfig;
 public class WebUtil {
     public static final String DEFAULT_ENCODING = "utf-8";
 
-    public static void setErrorResponse(HttpServletResponse response, ModelMap model, HttpConfig httpConfig,
-            long start, long delay, int code) throws InterruptedException {
-        long threadDelay = delay == 0 ? httpConfig.getDelay() : delay;
-        int statusCode = code == 0 ? httpConfig.getStatusCode() : code;
-        
-        model.put("code", statusCode);
-        model.put("delay", threadDelay);
-        response.setStatus(statusCode);
+    public static void setErrorResponse(HttpServletResponse response, ModelMap model, long start, long delay, int code)
+            throws InterruptedException {
+
+        model.put("code", code);
+        model.put("delay", delay);
+        response.setStatus(code);
         response.setCharacterEncoding(DEFAULT_ENCODING);
         // sleep
-        long sleepMillis = threadDelay - (System.currentTimeMillis() - start);
+        long sleepMillis = delay - (System.currentTimeMillis() - start);
         if (sleepMillis > 0) {
             Thread.sleep(sleepMillis);
         }

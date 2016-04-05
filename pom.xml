@@ -4,12 +4,12 @@
 	<groupId>napm.comb.server.test</groupId>
 	<version>1.0.1</version>
 	<artifactId>napm-comb-server-test</artifactId>
-	<!--<parent>-->
-		<!--<artifactId>napm-comb-demo-backend</artifactId>-->
-		<!--<groupId>com.netease.napm.comb.demo</groupId>-->
-		<!--<version>1.0.0</version>-->
-		<!--<relativePath>..</relativePath>-->
-	<!--</parent>-->
+	<!--<parent> -->
+	<!--<artifactId>napm-comb-demo-backend</artifactId> -->
+	<!--<groupId>com.netease.napm.comb.demo</groupId> -->
+	<!--<version>1.0.0</version> -->
+	<!--<relativePath>..</relativePath> -->
+	<!--</parent> -->
 	<packaging>war</packaging>
 
 	<properties>
@@ -18,7 +18,7 @@
 		<java.version>1.6</java.version>
 		<!-- Test Dependencies -->
 		<junit.version>4.11</junit.version>
-		<spring.version>3.2.3.RELEASE</spring.version>
+		<spring.version>4.1.0.RELEASE</spring.version>
 	</properties>
 
 	<dependencies>
@@ -130,15 +130,34 @@
 			<version>3.0.1</version>
 			<scope>provided</scope>
 		</dependency>
+		<!-- <dependency> <groupId>org.codehaus.jackson</groupId> <artifactId>jackson-mapper-asl</artifactId> 
+			<version>1.9.8</version> </dependency> -->
 		<dependency>
-			<groupId>org.codehaus.jackson</groupId>
-			<artifactId>jackson-mapper-asl</artifactId>
-			<version>1.9.8</version>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-core</artifactId>
+			<version>2.7.0</version>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>2.7.0</version>
 		</dependency>
 		<dependency>
 			<groupId>com.thoughtworks.xstream</groupId>
 			<artifactId>xstream</artifactId>
 			<version>1.4.2</version>
+		</dependency>
+		<!-- mysql-connect -->
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>5.0.8</version>
+		</dependency>
+		<!-- apache httpclient -->
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpclient</artifactId>
+			<version>4.4-alpha1</version>
 		</dependency>
 	</dependencies>
 
@@ -157,15 +176,15 @@
 				</configuration>
 			</plugin>
 
-			<!--<plugin>-->
-				<!--<groupId>org.apache.tomcat.maven</groupId>-->
-				<!--<artifactId>tomcat7-maven-plugin</artifactId>-->
-				<!--<version>2.1</version>-->
-				<!--<configuration>-->
-					<!--<path>/</path>-->
-					<!--<port>8282</port>-->
-				<!--</configuration>-->
-			<!--</plugin>-->
+			<!--<plugin> -->
+			<!--<groupId>org.apache.tomcat.maven</groupId> -->
+			<!--<artifactId>tomcat7-maven-plugin</artifactId> -->
+			<!--<version>2.1</version> -->
+			<!--<configuration> -->
+			<!--<path>/</path> -->
+			<!--<port>8282</port> -->
+			<!--</configuration> -->
+			<!--</plugin> -->
 		</plugins>
 
 	</build>
