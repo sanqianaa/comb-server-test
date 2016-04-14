@@ -47,7 +47,12 @@ public class DbService implements NapmCombService {
         try {
             Class.forName("com.mysql.jdbc.Driver");// load mysql driver
             conn = DriverManager.getConnection(url, "apmtest", "apmtest");// get
-                                                                          // sql
+            if(null==conn){
+                logger.error("conn failed!"+url);
+                return false;
+            }       
+            
+            // sql
             // connection
             Statement stmt = conn.createStatement();
             if (Const.QUERY.equals(dataType)) {
@@ -93,7 +98,6 @@ public class DbService implements NapmCombService {
      * @throws Exception
      */
     public static void main(String[] args) throws Exception {
-
         DbService dbService = new DbService();
         dbService
                 .invoke("jdbc:mysql://localhost:3306/napm_integration_ddb?useUnicode=true&characterEncoding=utf8&allowMultiQueries=true",
