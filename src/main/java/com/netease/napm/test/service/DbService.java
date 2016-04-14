@@ -46,8 +46,9 @@ public class DbService implements NapmCombService {
         Connection conn = null;
         try {
             Class.forName("com.mysql.jdbc.Driver");// load mysql driver
-            conn = DriverManager.getConnection(url, "root", "root");// get sql
-                                                                    // connection
+            conn = DriverManager.getConnection(url, "apmtest", "apmtest");// get
+                                                                          // sql
+            // connection
             Statement stmt = conn.createStatement();
             if (Const.QUERY.equals(dataType)) {
                 return executeQuery(stmt, sql);
